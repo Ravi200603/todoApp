@@ -28,10 +28,11 @@ function App() {
   },[todos])
 
   // //get from storage
-  useEffect(()=>{
-      setTodos(JSON.parse(localStorage.getItem("todos")))
-    
-  }, [])
+ useEffect(() => {
+  const savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+  setTodos(savedTodos);
+}, []);
+
   
   return (
     <div className='overflow-x-hidden h-screen'>

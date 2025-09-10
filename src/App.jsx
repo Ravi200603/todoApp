@@ -17,8 +17,11 @@ function App() {
     setTodos(todos.filter((todo)=> todo.id !== id ))
   }
   const [inputText, setInputText] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
   
+    return JSON.parse(localStorage.getItem("todos")) || [];
+  });
+
 
   // Set into storage 
   useEffect(()=>{
@@ -27,13 +30,7 @@ function App() {
     
   },[todos])
 
-  // //get from storage
- useEffect(() => {
-  const savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
-  setTodos(savedTodos);
-}, []);
 
-  
   return (
     <div className='overflow-x-hidden h-screen'>
       <div className=' md:w-4/5 h-15 md:my-4 mx-2 m-2 rounded-md shadow-md md:mx-auto'>
